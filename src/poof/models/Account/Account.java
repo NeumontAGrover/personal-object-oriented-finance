@@ -11,16 +11,18 @@ public class Account {
     private final ArrayList<Goal> goals = new ArrayList<>();
     private final ArrayList<Transaction> transactions = new ArrayList<>();
 
+    /* == Public interface == */
     public Account(String user, String password) {
         this.setUser(user);
         this.setPassword(password);
     }
 
+    /* == Getters & setters == */
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    private void setPassword(String password) {
         this.password = password;
     }
 
@@ -28,7 +30,25 @@ public class Account {
         return user;
     }
 
-    public void setUser(String user) {
+    private void setUser(String user) {
         this.user = user;
+    }
+
+    public ArrayList<Goal> getGoals() {
+        return goals;
+    }
+
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    /* == Private interface == */
+
+    private void addGoal(Goal goal) {
+        this.goals.add(goal);
+    }
+
+    private void addTransaction(Transaction transaction) {
+        this.transactions.add(transaction);
     }
 }

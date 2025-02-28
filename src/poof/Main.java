@@ -1,9 +1,9 @@
 package poof;
 
-import poof.controller.Controller;
+import poof.controller.EntryPointController;
 
 public class Main {
     public static void main(String[] args) {
-        new Controller().run();
+        new EntryPointController().run();
     }
 }

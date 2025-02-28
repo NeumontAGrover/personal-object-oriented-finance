@@ -1,5 +1,5 @@
 package poof.controller;
 
-public class Controller {
+public class EntryPointController {
     public void run() {}
 }

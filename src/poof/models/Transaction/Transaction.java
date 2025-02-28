@@ -15,8 +15,8 @@ public class Transaction {
         double amount,
         String description,
         TransactionType type,
-        LocalDateTime date)
-    {
+        LocalDateTime date
+    ) {
         this.setName(name);
         this.setAmount(amount);
         this.setDescription(description);

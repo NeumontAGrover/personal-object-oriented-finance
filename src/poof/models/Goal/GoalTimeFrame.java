@@ -5,5 +5,4 @@ public enum GoalTimeFrame {
     WEEKLY,
     MONTHLY,
     YEARLY,
-    CUSTOM
 }
