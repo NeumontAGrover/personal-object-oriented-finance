@@ -6,14 +6,14 @@ import poof.models.Goal.Goal;
 import poof.models.Transaction.Transaction;
 
 public class Account {
-    private String user;
+    private String username;
     private String password;
     private final ArrayList<Goal> goals = new ArrayList<>();
     private final ArrayList<Transaction> transactions = new ArrayList<>();
 
     /* == Public interface == */
-    public Account(String user, String password) {
-        this.setUser(user);
+    public Account(String username, String password) {
+        this.setUsername(username);
         this.setPassword(password);
     }
 
@@ -26,12 +26,12 @@ public class Account {
         this.password = password;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    private void setUser(String user) {
-        this.user = user;
+    private void setUsername(String username) {
+        this.username = username;
     }
 
     public ArrayList<Goal> getGoals() {
