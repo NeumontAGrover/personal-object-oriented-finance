@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 
 import poof.models.Account.Account;
 import poof.models.Meta.Adapters.DateSerializer;
@@ -29,6 +30,8 @@ public class AuthHandler extends Loggable {
     }
 
     public void addAccount(Account account) {
+        if (users == null) return;
+
         users.put(account.getUsername(), account);
         writeUserState();
     }
@@ -43,6 +46,8 @@ public class AuthHandler extends Loggable {
     }
 
     public boolean contains(String username) {
+        if (users == null) return false;
+
         return users.containsKey(username);
     }
 
@@ -52,6 +57,10 @@ public class AuthHandler extends Loggable {
 
         try(FileReader reader = new FileReader(USERSTATEPATH)) {
             Account[] accounts = gson.fromJson(reader, Account[].class);
+
+            if (accounts == null) {
+                return prevStates;
+            }
 
             for(Account account : accounts) {
                 prevStates.put(account.getUsername(), account);
@@ -64,6 +73,11 @@ public class AuthHandler extends Loggable {
             System.err.println(ex.getMessage());
             return null;
         }
+
+        catch(JsonIOException ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
     }
 
     private void writeUserState() {
@@ -72,6 +86,7 @@ public class AuthHandler extends Loggable {
         }
 
         catch(IOException ex) {
+            System.err.println("Could not write users");
             System.err.println(ex.getMessage());
         }
     }

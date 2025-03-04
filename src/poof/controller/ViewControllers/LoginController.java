@@ -24,6 +24,7 @@ public class LoginController {
 
     public boolean handleRegister(String username, String password) {
         if(!authenticator.contains(username)) {
+            authenticator.addAccount(new Account(username, password));
             return true;
         }
 
