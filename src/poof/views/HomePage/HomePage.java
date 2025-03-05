@@ -15,12 +15,14 @@ public class HomePage {
     private JButton setGoalBtn = new JButton("Set Goal");
 
     private JLabel jLabel = new JLabel("Status");
+    private JLabel homePage = new JLabel("Home Page");
 
     private JLabel balanceLbl = new JLabel("Balance: ");
+    private JLabel blank = new JLabel("");
 
     private HomePageController homePageController;
 
-    public void HomePageView(HomePageController homePageController) {
+    public HomePage(HomePageController homePageController) {
         this.homePageController = homePageController;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,13 +31,22 @@ public class HomePage {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(4, 3));
 
+        panel.add(homePage);
+        panel.add(blank);
         panel.add(signOutBtn);
-        panel.add(transacrionBtn);
-        panel.add(setGoalBtn);
 
         panel.add(balanceLbl);
 
-        signOutBtn.add(addActionListener());
+        panel.add(transacrionBtn);
+        panel.add(blank);
+        panel.add(setGoalBtn);
 
+        frame.add(panel);
+        frame.setVisible(true);
+
+    }
+
+    public void closeWindow() {
+        frame.setVisible(false);
     }
 }
