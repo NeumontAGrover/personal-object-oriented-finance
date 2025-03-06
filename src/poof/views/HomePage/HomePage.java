@@ -29,7 +29,7 @@ public class HomePage {
         frame.setSize(600, 700);
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(4, 3));
+        panel.setLayout(new GridLayout(3, 3));
 
         panel.add(homePage);
         panel.add(blank);
