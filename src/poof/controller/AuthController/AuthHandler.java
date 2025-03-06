@@ -17,6 +17,7 @@ import poof.models.Meta.Logger.Loggable;
 public class AuthHandler extends Loggable {
     private HashMap<String, Account> users = new HashMap<>();
     private final Gson gson = new GsonBuilder()
+            .excludeFieldsWithoutExposeAnnotation()
             .registerTypeAdapter(DateSerializer.class, new DateSerializer())
             .registerTypeAdapter(DateDeserializer.class, new DateDeserializer())
             .setPrettyPrinting()
@@ -81,8 +82,10 @@ public class AuthHandler extends Loggable {
     }
 
     private void writeUserState() {
-        try(FileWriter writer = new FileWriter(USERSTATEPATH, true)) {
-            gson.toJson(getUsers().values(), writer);
+        try(FileWriter writer = new FileWriter(USERSTATEPATH)) {
+            for (Account account : getUsers().values()) {
+                gson.toJson(account, writer);
+            }
         }
 
         catch(IOException ex) {
