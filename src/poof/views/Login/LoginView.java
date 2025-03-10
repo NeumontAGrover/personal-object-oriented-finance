@@ -74,7 +74,10 @@ public class LoginView {
         @Override
         public void actionPerformed(ActionEvent e) {
             String username = usernameTbx.getText();
-            String password = passwordTbx.getPassword().toString();
+
+            String password = "";
+            for (char character : passwordTbx.getPassword())
+                password += character;
 
             if(loginController.handleRegister(username, password)) {
                statusLbl.setText("Registration Successful!");

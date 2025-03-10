@@ -5,8 +5,8 @@ import poof.views.Login.LoginView;
 import poof.controller.AuthController.AuthHandler;
 
 public class LoginController {
-    private final LoginView loginView = new LoginView(this);
     private final AuthHandler authenticator = new AuthHandler();
+    private final LoginView loginView = new LoginView(this);
 
     public boolean handleLogin(String username, String password) {
         if(authenticator.authenticate(username, password)) {
@@ -14,10 +14,10 @@ public class LoginController {
             if(account == null) {
                 return false;
             }
-        }
 
-        loginView.closeWindow();
-        // new HomePageController(account).showHomePage();
+            loginView.closeWindow();
+            new HomePageController(account);
+        }
 
         return true;
     }

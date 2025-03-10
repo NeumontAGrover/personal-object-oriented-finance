@@ -1,1 +1,14 @@
-{}
+[
+  {
+    "username": "arthur",
+    "password": "567",
+    "goals": [],
+    "transactions": []
+  },
+  {
+    "username": "abcd",
+    "password": "1234",
+    "goals": [],
+    "transactions": []
+  }
+]
