@@ -4,6 +4,8 @@ import poof.controller.ViewControllers.HomePageController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 // Sign Out, Make a transaction, Set Goal, Balance
 public class HomePage {
@@ -48,5 +50,14 @@ public class HomePage {
 
     public void closeWindow() {
         frame.setVisible(false);
+    }
+
+    private class SetGoalBtnCallBack implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            homePageController.setGoal();
+        }
+
     }
 }

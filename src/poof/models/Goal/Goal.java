@@ -13,14 +13,13 @@ public class Goal {
 
     /* == Public interface == */
     public Goal(
-       String name,
-       String description,
-       LocalDate date,
-       double target,
-       double balance,
-       GoalType type,
-       GoalTimeFrame timeFrame
-    ) {
+            String name,
+            String description,
+            LocalDate date,
+            double target,
+            double balance,
+            GoalType type,
+            GoalTimeFrame timeFrame) {
         this.setName(name);
         this.setDescription(description);
         this.setDate(date);
