@@ -1,5 +1,6 @@
 package poof.controller.AuthController;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class AuthHandler extends Loggable {
             .setPrettyPrinting()
             .create();
 
-    private static final String USERSTATEPATH = "users_state.json";
+    private static final String USERSTATEPATH = "user_state.json";
 
     /* == Public interface == */
     public AuthHandler() {

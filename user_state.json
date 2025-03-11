@@ -1,0 +1,22 @@
+[
+  {
+    "username": "aidan",
+    "password": "savant",
+    "balance": 0.0,
+    "goals": [],
+    "transactions": [
+      {
+        "name": "aidan",
+        "amount": 15.0,
+        "description": "food money",
+        "dateString": "2025-03-11T17:15:35.494365"
+      },
+      {
+        "name": "aidan",
+        "amount": -15.0,
+        "description": "food money",
+        "dateString": "2025-03-11T17:15:35.503357700"
+      }
+    ]
+  }
+]

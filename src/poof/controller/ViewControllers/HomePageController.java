@@ -11,13 +11,16 @@ import poof.models.Account.Account;
 import poof.models.Transaction.Transaction;
 import poof.models.Goal.*;
 
+import java.lang.reflect.Array;
+import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-// Sign Out, Make a transaction, Set Goal, Balance
+import java.util.ArrayList;
 
+// Sign Out, Make a transaction, Set Goal, Balance
 public class HomePageController {
     private final HomePage homePage;
     private final LoginView loginView;
@@ -120,6 +123,48 @@ public class HomePageController {
         account.addTransaction(senderTransaction);
         authenticator.writeUserState();
         homePage.updateBalance();
+
         return true;
+    }
+
+    public Object[][] getAllTransactions() {
+        ArrayList<Transaction> transactions = account.getTransactions();
+        if(transactions == null || transactions.isEmpty()) {
+            return null;
+        }
+
+        Object[][] transactionTable = new Object[transactions.size()][5];
+        for(int i = 0; i < transactions.size(); ++i) {
+            Transaction transaction = transactions.get(i);
+
+            transactionTable[i][0] = transaction.getName();
+            transactionTable[i][1] = transaction.getDescription();
+            transactionTable[i][2] = transaction.getDate().toString();
+            transactionTable[i][3] = String.valueOf(transaction.getAmount());
+            transactionTable[i][4] = transaction.getAmount() >= 0 ? "Income" : "Expense";
+        }
+
+        return transactionTable;
+    }
+
+    public Object[][] getAllGoals() {
+        ArrayList<Goal> goals = account.getGoals();
+        if(goals == null || goals.isEmpty()) {
+            return null;
+        }
+
+        Object[][] goalTable = new Object[goals.size()][6];
+        for(int i = 0; i < goals.size(); ++i) {
+            Goal goal = goals.get(i);
+
+            goalTable[i][0] = goal.getName();
+            goalTable[i][1] = goal.getDescription();
+            goalTable[i][2] = goal.getDate().toString();
+            goalTable[i][3] = String.valueOf(goal.getTarget());
+            goalTable[i][4] = goal.getTimeFrame().toString().toLowerCase();
+            goalTable[i][5] = goal.getType().toString().toLowerCase();
+        }
+
+        return goalTable;
     }
 }

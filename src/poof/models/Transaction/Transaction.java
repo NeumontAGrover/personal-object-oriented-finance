@@ -1,7 +1,6 @@
 package poof.models.Transaction;
 
 import java.time.LocalDateTime;
-
 import com.google.gson.annotations.Expose;
 
 public class Transaction {

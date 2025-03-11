@@ -4,6 +4,8 @@ import poof.controller.ViewControllers.HomePageController;
 import poof.models.Account.Account;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +17,9 @@ public class HomePage {
     private JButton signOutBtn = new JButton("Sign Out");
     private JButton transacrionBtn = new JButton("Make a Transaction");
     private JButton setGoalBtn = new JButton("Set Goal");
+
+    private JButton viewTransactions = new JButton("View All Transactions");
+    private JButton viewGoals = new JButton("View All Goals");
 
     private JLabel jLabel = new JLabel("Status");
     private JLabel homePage = new JLabel("Home Page");
@@ -46,9 +51,15 @@ public class HomePage {
         panel.add(blank);
         panel.add(setGoalBtn);
 
+        panel.add(viewTransactions);
+        panel.add(viewGoals);
+
         signOutBtn.addActionListener(new SignOutBtnCallBack());
         setGoalBtn.addActionListener(new SetGoalBtnCallBack());
         transacrionBtn.addActionListener(new MakeTransactionBtnCallBack());
+
+        viewTransactions.addActionListener(new ViewTransactionsBtnCallBack());
+        viewGoals.addActionListener(new ViewGoalsBtnCallBack());
 
         frame.add(panel);
         frame.setVisible(true);
@@ -86,11 +97,9 @@ public class HomePage {
             GoalSetPage goalSetter = new GoalSetPage();
             goalSetter.goalPage();
         }
-
     }
 
     private class GoalSetPage {
-
         final JFrame goalFrame = new JFrame("New Goal");
 
         final JTextField goalNameTxt = new JTextField();
@@ -170,9 +179,7 @@ public class HomePage {
                 } else {
                     showMsg("Error, one or more areas have incorrect formatting. Please try again.");
                 }
-
             }
-
         }
 
         private class backBtnCallback implements ActionListener {
@@ -183,7 +190,63 @@ public class HomePage {
             }
 
         }
-
     }
 
+    private class ViewTransactionsBtnCallBack implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ignored) {
+            JDialog dialogPanel = new JDialog(frame, "Transactions", true);
+            dialogPanel.setSize(600, 500);
+            dialogPanel.setLayout(new BorderLayout());
+       
+            String[] transactionColumns = {"Name", "Description", "Date", "Amount", "Type"};
+           
+            Object[][] transactions = homePageController.getAllTransactions();
+            if(transactions == null) {
+                JOptionPane.showMessageDialog(frame, "No transactions available!", "Transaction Display", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+       
+            JTable transactionsTable = new JTable(transactions, transactionColumns);
+            JScrollPane scrollPane = new JScrollPane(transactionsTable);
+
+            JButton closeBtn = new JButton("Close");
+            closeBtn.addActionListener(_ -> dialogPanel.dispose());
+
+            dialogPanel.add(scrollPane, BorderLayout.CENTER);
+            dialogPanel.add(closeBtn, BorderLayout.SOUTH);
+
+            dialogPanel.setLocationRelativeTo(frame);
+            dialogPanel.setVisible(true);
+        }
+    }
+
+    private class ViewGoalsBtnCallBack implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JDialog dialogPanel = new JDialog(frame, "Goals", true);
+            dialogPanel.setSize(600, 500);
+            dialogPanel.setLayout(new BorderLayout());
+
+            String[] goalColumns = {"Name", "Description", "Date", "Target", "Time Frame", "Type"};
+            
+            Object[][] goals = homePageController.getAllGoals();
+            if(goals == null) {
+                JOptionPane.showMessageDialog(frame, "No goals available!", "Goals", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            JTable goalsTable = new JTable(goals, goalColumns);
+            JScrollPane scrollPane = new JScrollPane(goalsTable);
+
+            JButton closeBtn = new JButton("Close");
+            closeBtn.addActionListener(_ -> dialogPanel.dispose());
+
+            dialogPanel.add(scrollPane, BorderLayout.CENTER);
+            dialogPanel.add(closeBtn, BorderLayout.SOUTH);
+
+            dialogPanel.setLocationRelativeTo(frame);
+            dialogPanel.setVisible(true);
+        }
+    }
 }
