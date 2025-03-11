@@ -8,10 +8,14 @@ import poof.models.Goal.Goal;
 import poof.models.Transaction.Transaction;
 
 public class Account {
-    @Expose private String username;
-    @Expose private String password;
-    @Expose private final ArrayList<Goal> goals = new ArrayList<>();
-    @Expose private final ArrayList<Transaction> transactions = new ArrayList<>();
+    @Expose
+    private String username;
+    @Expose
+    private String password;
+    @Expose
+    private final ArrayList<Goal> goals = new ArrayList<>();
+    @Expose
+    private final ArrayList<Transaction> transactions = new ArrayList<>();
 
     /* == Public interface == */
     public Account(String username, String password) {
@@ -46,7 +50,7 @@ public class Account {
 
     /* == Private interface == */
 
-    private void addGoal(Goal goal) {
+    public void addGoal(Goal goal) {
         this.goals.add(goal);
     }
 
