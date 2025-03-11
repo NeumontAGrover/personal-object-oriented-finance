@@ -10,12 +10,12 @@ import java.awt.event.ActionListener;
 public class LoginView {
     private final JFrame frame = new JFrame("Login");
 
-    private final JTextField usernameTbx     = new JTextField();
+    private final JTextField usernameTbx = new JTextField();
     private final JPasswordField passwordTbx = new JPasswordField();
 
-    private JButton loginBtn    = new JButton("Login");
+    private JButton loginBtn = new JButton("Login");
     private JButton registerBtn = new JButton("Register");
-    private JLabel  statusLbl   = new JLabel("Status here");
+    private JLabel statusLbl = new JLabel("Status here");
 
     private final LoginController loginController;
 
@@ -71,7 +71,7 @@ public class LoginView {
             for (char character : passwordTbx.getPassword())
                 password += character;
 
-            if(!loginController.handleLogin(username, password)) {
+            if (!loginController.handleLogin(username, password)) {
                 showMsg("Invalid username or password!");
             }
         }
@@ -86,13 +86,13 @@ public class LoginView {
             for (char character : passwordTbx.getPassword())
                 password += character;
 
-            if(loginController.handleRegister(username, password)) {
-               statusLbl.setText("Registration Successful!");
-               statusLbl.setForeground(Color.GREEN);
+            if (loginController.handleRegister(username, password)) {
+                statusLbl.setText("Registration Successful!");
+                statusLbl.setForeground(Color.GREEN);
 
-               registerBtn.setVisible(false);
+                registerBtn.setVisible(false);
 
-               return;
+                return;
             }
 
             statusLbl.setText("Failure to register! Account already exists!");

@@ -55,7 +55,7 @@ public class Account {
 
     /* == Private interface == */
 
-    private void addGoal(Goal goal) {
+    public void addGoal(Goal goal) {
         this.goals.add(goal);
     }
 
