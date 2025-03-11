@@ -45,12 +45,16 @@ public class LoginView {
         registerBtn.addActionListener(new RegisterBtnCallback());
 
         frame.add(panel);
-        frame.setVisible(true);
+        openWindow();
     }
 
     /* == Public utility functions == */
     public void showMsg(String msg) {
         JOptionPane.showMessageDialog(frame, msg);
+    }
+
+    public void openWindow() {
+        frame.setVisible(true);
     }
 
     public void closeWindow() {

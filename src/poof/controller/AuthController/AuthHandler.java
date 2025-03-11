@@ -81,7 +81,7 @@ public class AuthHandler extends Loggable {
         }
     }
 
-    private void writeUserState() {
+    public void writeUserState() {
         try(FileWriter writer = new FileWriter(USERSTATEPATH)) {
             gson.toJson(getUsers().values(), writer);
         }

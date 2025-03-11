@@ -10,6 +10,7 @@ import poof.models.Transaction.Transaction;
 public class Account {
     @Expose private String username;
     @Expose private String password;
+    @Expose private float balance;
     @Expose private final ArrayList<Goal> goals = new ArrayList<>();
     @Expose private final ArrayList<Transaction> transactions = new ArrayList<>();
 
@@ -36,6 +37,14 @@ public class Account {
         this.username = username;
     }
 
+    public float getBalance() {
+        return balance;
+    }
+
+    public void setBalance(float newBalance) {
+        balance = newBalance;
+    }
+
     public ArrayList<Goal> getGoals() {
         return goals;
     }
@@ -50,7 +59,7 @@ public class Account {
         this.goals.add(goal);
     }
 
-    private void addTransaction(Transaction transaction) {
+    public void addTransaction(Transaction transaction) {
         this.transactions.add(transaction);
     }
 }

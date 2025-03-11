@@ -16,7 +16,7 @@ public class LoginController {
             }
 
             loginView.closeWindow();
-            new HomePageController(account);
+            new HomePageController(account, loginView, authenticator);
         }
 
         return true;

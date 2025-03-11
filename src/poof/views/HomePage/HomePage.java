@@ -1,6 +1,7 @@
 package poof.views.HomePage;
 
 import poof.controller.ViewControllers.HomePageController;
+import poof.models.Account.Account;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,6 @@ import java.awt.event.ActionListener;
 
 // Sign Out, Make a transaction, Set Goal, Balance
 public class HomePage {
-
     private final JFrame frame = new JFrame("Home Page");
 
     private JButton signOutBtn = new JButton("Sign Out");
@@ -23,9 +23,11 @@ public class HomePage {
     private JLabel blank = new JLabel("");
 
     private HomePageController homePageController;
+    private final Account account;
 
-    public HomePage(HomePageController homePageController) {
+    public HomePage(HomePageController homePageController, Account account) {
         this.homePageController = homePageController;
+        balanceLbl.setText("Balance: " + account.getBalance());
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 700);
@@ -43,17 +45,39 @@ public class HomePage {
         panel.add(blank);
         panel.add(setGoalBtn);
 
+        signOutBtn.addActionListener(new SignOutBtnCallBack());
+        setGoalBtn.addActionListener(new SetGoalBtnCallBack());
+        transacrionBtn.addActionListener(new MakeTransactionBtnCallBack());
+
         frame.add(panel);
         frame.setVisible(true);
 
+        this.account = account;
     }
 
     public void closeWindow() {
         frame.setVisible(false);
     }
 
-    private class SetGoalBtnCallBack implements ActionListener {
+    public void updateBalance() {
+        balanceLbl.setText(Float.toString(account.getBalance()));
+    }
 
+    private class MakeTransactionBtnCallBack implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            homePageController.openTransactionWindow();
+        }
+    }
+
+    private class SignOutBtnCallBack implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            homePageController.signOut();
+        }
+    }
+
+    private class SetGoalBtnCallBack implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             homePageController.setGoal();

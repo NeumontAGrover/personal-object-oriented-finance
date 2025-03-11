@@ -2,11 +2,13 @@ package poof.models.Transaction;
 
 import java.time.LocalDateTime;
 
+import com.google.gson.annotations.Expose;
+
 public class Transaction {
-    private String name;
-    private double amount;
-    private String description;
-    private TransactionType type;
+    @Expose private String name;
+    @Expose private double amount;
+    @Expose private String description;
+    @Expose private final String dateString;
     private LocalDateTime date;
 
     /* == Public interface == */
@@ -14,14 +16,13 @@ public class Transaction {
         String name,
         double amount,
         String description,
-        TransactionType type,
         LocalDateTime date
     ) {
         this.setName(name);
         this.setAmount(amount);
         this.setDescription(description);
-        this.setType(type);
         this.setDate(date);
+        dateString = date.toString();
     }
 
     /* == Getters & Setters ==*/
@@ -47,14 +48,6 @@ public class Transaction {
 
     private void setDescription(String description) {
         this.description = description;
-    }
-
-    public TransactionType getType() {
-        return type;
-    }
-
-    private void setType(TransactionType type) {
-        this.type = type;
     }
 
     public LocalDateTime getDate() {
