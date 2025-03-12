@@ -117,10 +117,16 @@ public class HomePageController {
             return false;
         }
 
-        receiver.setBalance(receiver.getBalance() + amount);
-        receiver.addTransaction(receiverTransaction);
-        account.setBalance(account.getBalance() - amount);
-        account.addTransaction(senderTransaction);
+        if (!account.getUsername().equals(username)) {
+            receiver.setBalance(receiver.getBalance() + amount);
+            receiver.addTransaction(receiverTransaction);
+            account.setBalance(account.getBalance() - amount);
+            account.addTransaction(senderTransaction);
+        } else {
+            account.setBalance(account.getBalance() + amount);
+            account.addTransaction(receiverTransaction);
+        }
+        
         authenticator.writeUserState();
         homePage.updateBalance();
 

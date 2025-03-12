@@ -2,9 +2,16 @@
   {
     "username": "arthur",
     "password": "123",
-    "balance": 0.0,
+    "balance": 25.0,
     "goals": [],
-    "transactions": []
+    "transactions": [
+      {
+        "name": "arthur",
+        "amount": 25.0,
+        "description": "deposit",
+        "dateString": "2025-03-11T19:04:11.213158300"
+      }
+    ]
   },
   {
     "username": "aidan",
