@@ -7,21 +7,19 @@ public class Transaction {
     @Expose private String name;
     @Expose private double amount;
     @Expose private String description;
-    @Expose private final String dateString;
-    private LocalDateTime date;
+    @Expose private String date;
 
     /* == Public interface == */
     public Transaction(
         String name,
         double amount,
         String description,
-        LocalDateTime date
+        String date
     ) {
         this.setName(name);
         this.setAmount(amount);
         this.setDescription(description);
         this.setDate(date);
-        dateString = date.toString();
     }
 
     /* == Getters & Setters ==*/
@@ -49,11 +47,11 @@ public class Transaction {
         this.description = description;
     }
 
-    public LocalDateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    private void setDate(LocalDateTime date) {
+    private void setDate(String date) {
         this.date = date;
     }
 }

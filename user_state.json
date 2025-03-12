@@ -1,28 +1,27 @@
 [
   {
-    "username": "arthur",
-    "password": "123",
-    "balance": 0.0,
-    "goals": [],
-    "transactions": []
-  },
-  {
-    "username": "aidan",
-    "password": "savant",
-    "balance": 0.0,
+    "username": "a",
+    "password": "a",
+    "balance": 15.0,
     "goals": [],
     "transactions": [
       {
-        "name": "aidan",
+        "name": "a",
         "amount": 15.0,
-        "description": "food money",
-        "dateString": "2025-03-11T17:15:35.494365"
+        "description": "asdf",
+        "date": "2025-03-11T19:47:53.395175300"
       },
       {
-        "name": "aidan",
+        "name": "a",
         "amount": -15.0,
-        "description": "food money",
-        "dateString": "2025-03-11T17:15:35.503357700"
+        "description": "asdf",
+        "date": "2025-03-11T19:47:53.412489900"
+      },
+      {
+        "name": "a",
+        "amount": 15.0,
+        "description": ",merp",
+        "date": "2025-03-11T19:54:26.828547700"
       }
     ]
   }

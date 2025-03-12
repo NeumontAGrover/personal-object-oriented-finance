@@ -109,18 +109,24 @@ public class HomePageController {
     }
 
     public boolean makeTransaction(String username, float amount, String description) {
-        Transaction receiverTransaction = new Transaction(account.getUsername(), amount, description, LocalDateTime.now());
-        Transaction senderTransaction = new Transaction(username, -amount, description, LocalDateTime.now());
+        Transaction receiverTransaction = new Transaction(account.getUsername(), amount, description, LocalDateTime.now().toString());
+        Transaction senderTransaction = new Transaction(username, -amount, description, LocalDateTime.now().toString());
         Account receiver = authenticator.getAccount(username);
 
         if (receiver == null) {
             return false;
         }
 
-        receiver.setBalance(receiver.getBalance() + amount);
-        receiver.addTransaction(receiverTransaction);
-        account.setBalance(account.getBalance() - amount);
-        account.addTransaction(senderTransaction);
+        if (!account.getUsername().equals(username)) {
+            receiver.setBalance(receiver.getBalance() + amount);
+            receiver.addTransaction(receiverTransaction);
+            account.setBalance(account.getBalance() - amount);
+            account.addTransaction(senderTransaction);
+        } else {
+            account.setBalance(account.getBalance() + amount);
+            account.addTransaction(receiverTransaction);
+        }
+        
         authenticator.writeUserState();
         homePage.updateBalance();
 
