@@ -15,17 +15,14 @@ public class HomePage {
     private final JFrame frame = new JFrame("Home Page");
 
     private JButton signOutBtn = new JButton("Sign Out");
-    private JButton transacrionBtn = new JButton("Make a Transaction");
+    private JButton transactionBtn = new JButton("Make a Transaction");
     private JButton setGoalBtn = new JButton("Set Goal");
 
     private JButton viewTransactions = new JButton("View All Transactions");
     private JButton viewGoals = new JButton("View All Goals");
 
-    private JLabel jLabel = new JLabel("Status");
-    private JLabel homePage = new JLabel("Home Page");
-
+    private JLabel homePageLbl = new JLabel("Home Page");
     private JLabel balanceLbl = new JLabel("Balance: ");
-    private JLabel blank = new JLabel("");
 
     private HomePageController homePageController;
     private final Account account;
@@ -33,35 +30,53 @@ public class HomePage {
 
     public HomePage(HomePageController homePageController, Account account) {
         this.homePageController = homePageController;
-        balanceLbl.setText("Balance: " + account.getBalance());
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 700);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(3, 3));
+        JPanel flexColumn = new JPanel();
+        flexColumn.setLayout(new GridLayout(7, 1));
+        flexColumn.add(homePageLbl);
 
-        panel.add(homePage);
-        panel.add(blank);
-        panel.add(signOutBtn);
+        JPanel accountRow = new JPanel();
+        accountRow.setLayout(new GridLayout(1, 2));
+        accountRow.add(balanceLbl);
+        accountRow.add(signOutBtn);
 
-        panel.add(balanceLbl);
+        JPanel transactionRow = new JPanel();
+        transactionRow.setLayout(new GridLayout(1, 2));
+        transactionRow.add(transactionBtn);
+        transactionRow.add(viewTransactions);
 
-        panel.add(transacrionBtn);
-        panel.add(blank);
-        panel.add(setGoalBtn);
+        JPanel goalRow = new JPanel();
+        goalRow.setLayout(new GridLayout(1, 2));
+        goalRow.add(setGoalBtn);
+        goalRow.add(viewGoals);
 
-        panel.add(viewTransactions);
-        panel.add(viewGoals);
+        flexColumn.add(homePageLbl);
+        flexColumn.add(new JLabel());
+        flexColumn.add(accountRow);
+        flexColumn.add(new JLabel());
+        flexColumn.add(transactionRow);
+        flexColumn.add(new JLabel());
+        flexColumn.add(goalRow);
+
+        homePageLbl.setHorizontalAlignment(JLabel.CENTER);
+        balanceLbl.setText("Balance: " + account.getBalance());
+        Insets regularInsets = new Insets(10, 2, 10, 2);
+        signOutBtn.setMargin(regularInsets);
+        transactionBtn.setMargin(regularInsets);
+        viewTransactions.setMargin(regularInsets);
+        setGoalBtn.setMargin(regularInsets);
+        viewGoals.setMargin(regularInsets);
 
         signOutBtn.addActionListener(new SignOutBtnCallBack());
         setGoalBtn.addActionListener(new SetGoalBtnCallBack());
-        transacrionBtn.addActionListener(new MakeTransactionBtnCallBack());
-
+        transactionBtn.addActionListener(new MakeTransactionBtnCallBack());
         viewTransactions.addActionListener(new ViewTransactionsBtnCallBack());
         viewGoals.addActionListener(new ViewGoalsBtnCallBack());
 
-        frame.add(panel);
+        frame.add(flexColumn);
         frame.setVisible(true);
 
         setGoalBtn.addActionListener(new SetGoalBtnCallBack());
@@ -154,7 +169,6 @@ public class HomePage {
 
             goalFrame.add(goalPanel);
             goalFrame.setVisible(true);
-
         }
 
         private void reopenHompage() {
@@ -211,7 +225,7 @@ public class HomePage {
             JScrollPane scrollPane = new JScrollPane(transactionsTable);
 
             JButton closeBtn = new JButton("Close");
-            closeBtn.addActionListener(_ -> dialogPanel.dispose());
+            closeBtn.addActionListener(action -> dialogPanel.dispose());
 
             dialogPanel.add(scrollPane, BorderLayout.CENTER);
             dialogPanel.add(closeBtn, BorderLayout.SOUTH);
@@ -240,7 +254,7 @@ public class HomePage {
             JScrollPane scrollPane = new JScrollPane(goalsTable);
 
             JButton closeBtn = new JButton("Close");
-            closeBtn.addActionListener(_ -> dialogPanel.dispose());
+            closeBtn.addActionListener(action -> dialogPanel.dispose());
 
             dialogPanel.add(scrollPane, BorderLayout.CENTER);
             dialogPanel.add(closeBtn, BorderLayout.SOUTH);
