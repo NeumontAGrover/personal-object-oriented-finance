@@ -225,7 +225,7 @@ public class HomePage {
             JScrollPane scrollPane = new JScrollPane(transactionsTable);
 
             JButton closeBtn = new JButton("Close");
-            closeBtn.addActionListener(action -> dialogPanel.dispose());
+            closeBtn.addActionListener(_ -> dialogPanel.dispose());
 
             dialogPanel.add(scrollPane, BorderLayout.CENTER);
             dialogPanel.add(closeBtn, BorderLayout.SOUTH);
@@ -237,7 +237,7 @@ public class HomePage {
 
     private class ViewGoalsBtnCallBack implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent ignored) {
             JDialog dialogPanel = new JDialog(frame, "Goals", true);
             dialogPanel.setSize(600, 500);
             dialogPanel.setLayout(new BorderLayout());
@@ -254,7 +254,7 @@ public class HomePage {
             JScrollPane scrollPane = new JScrollPane(goalsTable);
 
             JButton closeBtn = new JButton("Close");
-            closeBtn.addActionListener(action -> dialogPanel.dispose());
+            closeBtn.addActionListener(_ -> dialogPanel.dispose());
 
             dialogPanel.add(scrollPane, BorderLayout.CENTER);
             dialogPanel.add(closeBtn, BorderLayout.SOUTH);
