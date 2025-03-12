@@ -1,8 +1,15 @@
 [
   {
-    "username": "a",
-    "password": "a",
-    "balance": 15.0,
+    "username": "arthur",
+    "password": "123",
+    "balance": 0.0,
+    "goals": [],
+    "transactions": []
+  },
+  {
+    "username": "aidan",
+    "password": "savant",
+    "balance": 0.0,
     "goals": [],
     "transactions": [
       {
